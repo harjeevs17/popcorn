@@ -1,33 +1,31 @@
 import React from "react";
 import { Text } from "react-native";
-import { Header, Left, Right, Button, Icon, Body, Title } from "native-base";
-
-const Header_View = () => {
+import {
+  Header,
+  Left,
+  Right,
+  Button,
+  Icon,
+  Body,
+  Title,
+  Item,
+  Input,
+} from "native-base";
+const onChange = (event, props) => {
+  props.query(event.target.value);
+};
+const Header_View = (props) => {
   return (
-    <Header
-      style={{
-        backgroundColor: "white",
-        color: "black",
-        borderBottomColor: "white",
-        border: 10,
-      }}
-    >
-      <Left>
-        <Button
-          transparent
-          onPress={() => this.props.navigation.navigate("DrawerOpen")}
-        >
-          <Icon style={{ color: "black" }} name="menu" />
-        </Button>
-      </Left>
-      <Body>
-        <Title style={{ color: "black" }}>Content</Title>
-      </Body>
-      <Right>
-        <Button transparent>
-          <Icon style={{ color: "black" }} name="search" />
-        </Button>
-      </Right>
+    <Header searchBar rounded>
+      <Item>
+        <Icon name="ios-search" />
+        <Input
+          onChange={(event) => onChange(event, props)}
+          placeholder={props.title}
+        />
+        <Icon name="ios-people" />
+      </Item>
+      <Button transparent></Button>
     </Header>
   );
 };
