@@ -9,6 +9,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Movies from "./components/movies/index";
 import Books from "./components/books/index";
 import DetailPage from "./components/DetailPage/index";
+import AddedContent from "./components/AddedContent/index";
 import Tvshows from "./components/tvshows/index";
 import { Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
@@ -92,6 +93,7 @@ export default class App extends React.Component {
         <Stack.Navigator>
           <Stack.Screen name="Addition" component={tabs_view} />
           <Stack.Screen name="DetailPage" component={DetailPage} />
+          <Stack.Screen name="AddedContent" component={AddedContent} />
         </Stack.Navigator>
       </NavigationContainer>
     );

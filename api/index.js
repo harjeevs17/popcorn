@@ -1,4 +1,5 @@
 import axios from "axios";
+const development = "http://localhost:8008/";
 export const FetchMovieData = async (query) => {
   try {
     const {
@@ -47,4 +48,44 @@ export const FetchBookData = async (query) => {
   } catch (err) {
     console.log(err);
   }
+};
+
+export const ReturnTv = async () => {
+  try {
+    const { data } = await axios.get(`${development}fetch-tv`);
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const ReturnBook = async () => {
+  try {
+    const { data } = await axios.get(`${development}fetch-books`);
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+export const ReturnMovies = async () => {
+  try {
+    const { data } = await axios.get(`${development}fetch-movies`);
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const ReturnData = (type) => {
+  let data = [];
+  if (type === "movies") {
+    data = ReturnMovies();
+  }
+  if (type === "Tvshows") {
+    data = ReturnTv();
+  }
+  if (type === "books") {
+    data = ReturnBook();
+  }
+  return data;
 };

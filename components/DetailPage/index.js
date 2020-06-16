@@ -20,7 +20,7 @@ function DetailPage({ route, navigation }) {
                 ? params.b_image
                 : "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT-tYQcfRM__x3x5QzyzcodI_AC4QiW8Crd5Yeo9t-16tUJ6TWE&usqp=CAU",
           }}
-        ></Image>
+        />
         <Text
           style={{
             fontSize: 24,
