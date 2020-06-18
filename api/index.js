@@ -33,16 +33,17 @@ export const FetchBookData = async (query) => {
       data: { items },
     } = await axios.get(bookurl);
     var final = [];
-    items.map(({ volumeInfo }, key) => {
-      var data = {};
-      (data.title = volumeInfo.title),
-        (data.imageLinks = volumeInfo.imageLinks),
-        (data.averageRating = volumeInfo.averageRating),
-        (data.authors = volumeInfo.authors),
-        (data.description = volumeInfo.description),
-        (data.infoLink = volumeInfo.infoLink),
-        (data.date = volumeInfo.publishedDate),
-        final.push(data);
+    items.map((data, key) => {
+      var d = {};
+      d.id = data.id;
+      (d.title = data.volumeInfo.title),
+        (d.imageLinks = data.volumeInfo.imageLinks),
+        (d.averageRating = data.volumeInfo.averageRating),
+        (d.authors = data.volumeInfo.authors),
+        (d.description = data.volumeInfo.description),
+        (d.infoLink = data.volumeInfo.infoLink),
+        (d.date = data.volumeInfo.publishedDate),
+        final.push(d);
     });
     return final;
   } catch (err) {
@@ -88,4 +89,27 @@ export const ReturnData = (type) => {
     data = ReturnBook();
   }
   return data;
+};
+
+export const InsertData = (data) => {
+  let url = "";
+  console.log("API", data);
+  if (data.type == "movies") {
+    url = `${development}insert-movie`;
+  }
+  if (data.type == "books") {
+    url = `${development}insert-book`;
+  }
+  if (data.type == "Tvshows") {
+    url = `${development}insert-tv`;
+  }
+  console.log("target", url);
+  axios.post(url, data).then(
+    (response) => {
+      console.log(response);
+    },
+    (error) => {
+      console.log(error);
+    }
+  );
 };

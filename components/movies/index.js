@@ -52,6 +52,7 @@ class Movies extends React.Component {
         }
         id={item.id}
         date={item.release_date}
+        type="movies"
       />
     );
   }

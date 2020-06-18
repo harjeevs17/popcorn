@@ -40,8 +40,9 @@ class Books extends React.Component {
         b_image={
           item.imageLinks !== undefined ? `${item.imageLinks.thumbnail}` : null
         }
-        id="100"
+        id={item.id}
         date={item.first_air_date}
+        type="books"
       />
     );
   }

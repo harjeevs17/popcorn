@@ -30,7 +30,7 @@ class AddedContent extends React.Component {
     this.setState({
       content: await ReturnData(type),
     });
-    console.log(this.state.content);
+    console.log("we got stuff", this.state.content);
   }
 
   stateSetter = (type) => {
@@ -43,9 +43,12 @@ class AddedContent extends React.Component {
       <ListView
         title={item.title}
         description={item.description}
-        f_image={item.image}
-        id="100"
+        f_image={item.f_image}
+        b_image={item.b_image}
+        id={item.id}
         date={item.first_air_date}
+        rating={item.rating}
+        type={this.state.type}
       />
     );
   }

@@ -41,6 +41,7 @@ class Tvshows extends React.Component {
         }
         id={item.id}
         date={item.first_air_date}
+        type="Tvshows"
       />
     );
   }

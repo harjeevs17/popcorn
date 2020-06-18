@@ -1,14 +1,35 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Text } from "native-base";
-import { Image, View } from "react-native";
+import { Image, View, TouchableOpacity } from "react-native";
 import { Button } from "react-native-elements";
-
-import { Rating } from "react-native-elements";
+import { InsertData } from "../../api/index";
+import { Rating, AirbnbRating } from "react-native-elements";
 import { ScrollView } from "react-native-gesture-handler";
 
 function DetailPage({ route, navigation }) {
   const { params } = route.params;
-  console.log("haha" + params.data);
+  const [rating, setrating] = useState(0);
+
+  useEffect(() => {
+    if (params.rating) {
+      setrating(params.rating);
+    } else {
+      setrating(0);
+    }
+  }, []);
+
+  console.log("haha" + params.rating);
+  const ratingCompleted = (r) => {
+    setrating(r);
+    console.log("Update rating ", r);
+    console.log("New Update rating ", rating);
+  };
+  const insertData = async (data, value) => {
+    data.status = value;
+    data.rating = rating;
+    console.log("check", data);
+    const result = await InsertData(data);
+  };
   return (
     <ScrollView>
       <View>
@@ -40,10 +61,39 @@ function DetailPage({ route, navigation }) {
         >
           {params.description}
         </Text>
-        <Rating showRating style={{ paddingVertical: 10 }} />
+        <AirbnbRating
+          count={5}
+          reviews={[
+            "Bad",
+            "OK",
+            "Hark's Suggestion",
+            "Amazing",
+            "Dipti's Suggestion",
+          ]}
+          defaultRating={rating}
+          onFinishRating={(rating) => ratingCompleted(rating)}
+          size={20}
+        />
+
         <View style={{ flexDirection: "row", justifyContent: "center" }}>
-          <Button style={{ margin: 20 }} title="Watched" />
-          <Button style={{ margin: 20 }} title="Whishlist" />
+          <View>
+            <TouchableOpacity
+              onPress={() => {
+                insertData(params, 1);
+              }}
+            >
+              <Text>Watched</Text>
+            </TouchableOpacity>
+          </View>
+          <View>
+            <TouchableOpacity
+              onPress={() => {
+                insertData(params, 0);
+              }}
+            >
+              <Text>Wishlist</Text>
+            </TouchableOpacity>
+          </View>
         </View>
         <View style={{ height: 20 }}></View>
       </View>

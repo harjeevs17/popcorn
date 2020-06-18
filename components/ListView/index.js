@@ -18,6 +18,8 @@ function ListView(props) {
             b_image: props.b_image,
             date: props.date,
             id: props.id,
+            type: props.type,
+            rating: props.rating,
           },
         })
       }
@@ -36,12 +38,7 @@ function ListView(props) {
         <Text style={{ marginBottom: 7, fontWeight: "700" }}>
           {props.title}
         </Text>
-        <Rating
-          style={{ alignSelf: "baseline", marginBottom: 7 }}
-          imageSize={20}
-          readonly
-          startingValue={2}
-        />
+
         <Text>{props.date}</Text>
       </View>
     </TouchableOpacity>
@@ -49,3 +46,9 @@ function ListView(props) {
 }
 
 export default ListView;
+/*<Rating
+          style={{ alignSelf: "baseline", marginBottom: 7 }}
+          imageSize={20}
+          readonly
+          startingValue={2}
+        />*/
