@@ -113,3 +113,27 @@ export const InsertData = (data) => {
     }
   );
 };
+
+export const getRating = async (type, id) => {
+  let url = "";
+  if (type == "movies") {
+    url = `${development}fetch-movie-rating/${id}`;
+  }
+  if (type == "books") {
+    url = `${development}fetch-book-rating/${id}`;
+  }
+  if (type == "Tvshows") {
+    url = `${development}fetch-tv-rating/${id}`;
+  }
+  try {
+    console.log("url", url);
+    const { data } = await axios.get(url);
+    if (data[0]) {
+      return data[0].rating;
+    } else {
+      return 0;
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};

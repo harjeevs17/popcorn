@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Text, TouchableOpacity, Image, View } from "react-native";
 import { Rating } from "react-native-elements";
+import { getRating } from "../../api/index";
 import { useNavigation } from "@react-navigation/native";
 
 function ListView(props) {
   console.log("crack", props);
+
   const navigation = useNavigation();
 
   return (

@@ -8,8 +8,9 @@ class Slider_view extends React.Component {
       <>
         <View
           style={{
-            height: 200,
-            width: 120,
+            minWidth: 120,
+            minHeight: "100%",
+            maxHeight: 170,
             marginLeft: 20,
             borderWidth: 0.5,
             borderColor: "white",
@@ -22,7 +23,7 @@ class Slider_view extends React.Component {
               }}
               style={{
                 resizeMode: "cover",
-                height: null,
+                height: 200,
                 width: null,
                 flex: 1,
                 borderRadius: 10,

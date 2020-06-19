@@ -63,7 +63,7 @@ const AddedContent = () => {
             rounded
             source={{
               uri:
-                "https://lh3.googleusercontent.com/proxy/Rhg8UZ0tADluY4GWSzSNUmryOiLkK7jfYw_JvMQLzq_RbVz_zf2Bwz8u6XF8YmAlHY53OyZWy6rICEOoymE_XJxgsL-J0QDUSsPDcA5ZcGMFwwl5thjeGUxwi2z3lvS1_5LslnzJO5Sz8wo",
+                "https://imgv2-2-f.scribdassets.com/img/word_document/250027035/original/3f2d67dbfe/1591483668?v=1",
             }}
             size="large"
           />

@@ -4,6 +4,9 @@ import Slider_view from "./sliderView";
 
 class Slider extends React.Component {
   render() {
+    const test = this.props.data.map((item) => {
+      return <Slider_view title={item.title} image={item.f_image} />;
+    });
     return (
       <ScrollView scrollEventThrottle={16}>
         <View style={{ flex: 1, backgroundColor: "white", paddingTop: 20 }}>
@@ -16,31 +19,12 @@ class Slider extends React.Component {
           >
             Recent {this.props.title}
           </Text>
-          <View style={{ height: 200, marginTop: 20 }}>
+          <View style={{ flex: 1, height: 200, marginTop: 20 }}>
             <ScrollView
               horizontal={true}
               showsHorizontalScrollIndicator={false}
             >
-              <Slider_view
-                title="One"
-                image="https://image.tmdb.org/t/p/w220_and_h330_face/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg"
-              />
-              <Slider_view
-                title="One"
-                image="https://image.tmdb.org/t/p/w220_and_h330_face/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg"
-              />
-              <Slider_view
-                title="One"
-                image="https://image.tmdb.org/t/p/w220_and_h330_face/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg"
-              />
-              <Slider_view
-                title="One"
-                image="https://image.tmdb.org/t/p/w220_and_h330_face/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg"
-              />
-              <Slider_view
-                title="One"
-                image="https://image.tmdb.org/t/p/w220_and_h330_face/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg"
-              />
+              {test}
             </ScrollView>
           </View>
         </View>

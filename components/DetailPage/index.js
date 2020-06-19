@@ -3,6 +3,7 @@ import { Text } from "native-base";
 import { Image, View, TouchableOpacity } from "react-native";
 import { Button } from "react-native-elements";
 import { InsertData } from "../../api/index";
+import { getRating } from "../../api/index";
 import { Rating, AirbnbRating } from "react-native-elements";
 import { ScrollView } from "react-native-gesture-handler";
 
@@ -11,6 +12,12 @@ function DetailPage({ route, navigation }) {
   const [rating, setrating] = useState(0);
 
   useEffect(() => {
+    console.log("inside", params);
+    const foo = async () => {
+      let F_Rating = await getRating(params.type, params.id);
+      setrating(F_Rating);
+    };
+    foo();
     if (params.rating) {
       setrating(params.rating);
     } else {
@@ -27,7 +34,7 @@ function DetailPage({ route, navigation }) {
   const insertData = async (data, value) => {
     data.status = value;
     data.rating = rating;
-    console.log("check", data);
+    console.log("check77", data);
     const result = await InsertData(data);
   };
   return (
@@ -75,8 +82,38 @@ function DetailPage({ route, navigation }) {
           size={20}
         />
 
-        <View style={{ flexDirection: "row", justifyContent: "center" }}>
-          <View>
+        <View
+          style={{
+            flex: 1,
+            flexDirection: "row",
+            justifyContent: "space-evenly",
+          }}
+        >
+          <Button
+            onPress={() => {
+              insertData(params, 1);
+            }}
+            size={10}
+            title="Watched"
+          />
+
+          <Button
+            onPress={() => {
+              insertData(params, 0);
+            }}
+            size={10}
+            title="Wishlist"
+            type="outline"
+          />
+        </View>
+      </View>
+      <View style={{ height: 20 }}></View>
+    </ScrollView>
+  );
+}
+
+export default DetailPage;
+/*<View>
             <TouchableOpacity
               onPress={() => {
                 insertData(params, 1);
@@ -93,12 +130,4 @@ function DetailPage({ route, navigation }) {
             >
               <Text>Wishlist</Text>
             </TouchableOpacity>
-          </View>
-        </View>
-        <View style={{ height: 20 }}></View>
-      </View>
-    </ScrollView>
-  );
-}
-
-export default DetailPage;
+          </View> */
