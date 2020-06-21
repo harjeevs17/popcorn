@@ -1,5 +1,5 @@
 import axios from "axios";
-const development = "http://localhost:8008/";
+const development = "http://52.66.196.224/";
 export const FetchMovieData = async (query) => {
   try {
     const {

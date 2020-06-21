@@ -32,7 +32,7 @@ class Movies extends React.Component {
     console.log(this.state.data);
   }
   getQuery = (query) => {
-    console.log("this is the query" + query);
+    console.log("this is the query fucker" + query);
     this.setState({
       query: query,
     });
