@@ -36,6 +36,7 @@ class Movies extends React.Component {
     this.setState({
       query: query,
     });
+
     this.getMovies(query);
   };
   renderItem(item) {

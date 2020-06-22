@@ -51,42 +51,42 @@ export const FetchBookData = async (query) => {
   }
 };
 
-export const ReturnTv = async () => {
+export const ReturnTv = async (status) => {
   try {
-    const { data } = await axios.get(`${development}fetch-tv`);
+    const { data } = await axios.get(`${development}fetch-tv/${status}`);
     return data;
   } catch (err) {
     console.log(err);
   }
 };
 
-export const ReturnBook = async () => {
+export const ReturnBook = async (status) => {
   try {
-    const { data } = await axios.get(`${development}fetch-books`);
+    const { data } = await axios.get(`${development}fetch-books/${status}`);
     return data;
   } catch (err) {
     console.log(err);
   }
 };
-export const ReturnMovies = async () => {
+export const ReturnMovies = async (status) => {
   try {
-    const { data } = await axios.get(`${development}fetch-movies`);
+    const { data } = await axios.get(`${development}fetch-movies/${status}`);
     return data;
   } catch (err) {
     console.log(err);
   }
 };
 
-export const ReturnData = (type) => {
+export const ReturnData = (type, status) => {
   let data = [];
   if (type === "movies") {
-    data = ReturnMovies();
+    data = ReturnMovies(status);
   }
   if (type === "Tvshows") {
-    data = ReturnTv();
+    data = ReturnTv(status);
   }
   if (type === "books") {
-    data = ReturnBook();
+    data = ReturnBook(status);
   }
   return data;
 };
@@ -133,6 +133,34 @@ export const getRating = async (type, id) => {
     } else {
       return 0;
     }
+  } catch (err) {
+    console.log(err);
+  }
+};
+export const fetchRelatedMovies = async (id) => {
+  console.log("id recss", id);
+  var url = `https://api.themoviedb.org/3/movie/${id}/similar?api_key=2204cced80820283f656cf9088708ab7&language=en-US&page=1`;
+  console.log("url", url);
+  try {
+    const {
+      data: { results },
+    } = await axios.get(url);
+    var final = [];
+    results.map((item) => {
+      var d = {};
+      (d.title = item.original_title),
+        (d.description = item.overview),
+        (d.f_image = `https://image.tmdb.org/t/p/w500${item.poster_path}`),
+        (d.b_image =
+          item.backdrop_path !== null
+            ? `https://image.tmdb.org/t/p/w500${item.backdrop_path}`
+            : null),
+        (d.id = item.id),
+        (d.date = item.release_date),
+        (d.type = "movies"),
+        final.push(d);
+    });
+    return final;
   } catch (err) {
     console.log(err);
   }

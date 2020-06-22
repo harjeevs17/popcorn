@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Text } from "react-native";
+import { SearchBar } from "react-native-elements";
+
 import {
   Header,
   Left,
@@ -11,22 +13,36 @@ import {
   Item,
   Input,
 } from "native-base";
-const onChange = (event, props) => {
-  props.query(event.target.value);
-};
+
 const Header_View = (props) => {
+  const onChange = (value, props) => {
+    props.query(value);
+    setquery(value);
+  };
+  const [query, setquery] = useState("");
   return (
-    <Header searchBar rounded>
-      <Item>
+    <SearchBar
+      containerStyle={{
+        backgroundColor: "#FBFBFB",
+        borderBottomColor: "transparent",
+        borderTopColor: "transparent",
+      }}
+      inputStyle={{ backgroundColor: "white" }}
+      inputContainerStyle={{ backgroundColor: "white" }}
+      placeholder="Type Here..."
+      onChangeText={(text) => onChange(text, props)}
+      value={query}
+    />
+  );
+};
+
+export default Header_View;
+/*<Item>
         <Icon name="ios-search" />
         <Input
-          onChange={(event) => onChange(event, props)}
+          onChangeText={(text) => onChange(text, props)}
           placeholder={props.title}
         />
         <Icon name="ios-people" />
       </Item>
-      <Button transparent></Button>
-    </Header>
-  );
-};
-export default Header_View;
+      <Button transparent></Button>*/

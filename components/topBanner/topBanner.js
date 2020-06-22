@@ -4,7 +4,7 @@ import { Card, Left, Right, Thumbnail, CardItem, Body } from "native-base";
 class TopBanner extends React.Component {
   render() {
     return (
-      <View style={{ padding: 10 }}>
+      <View style={{ padding: 10, backgroundColor: "white" }}>
         <Image
           style={{ height: 200, width: null, flex: 1, borderRadius: 10 }}
           source={{

@@ -6,7 +6,7 @@ import { InsertData } from "../../api/index";
 import { getRating } from "../../api/index";
 import { Rating, AirbnbRating } from "react-native-elements";
 import { ScrollView } from "react-native-gesture-handler";
-
+import RecommendedContent from "./recommededContent";
 function DetailPage({ route, navigation }) {
   const { params } = route.params;
   const [rating, setrating] = useState(0);
@@ -107,27 +107,12 @@ function DetailPage({ route, navigation }) {
           />
         </View>
       </View>
+      {params.type == "movies" ? (
+        <RecommendedContent type={params.type} id={params.id} />
+      ) : null}
       <View style={{ height: 20 }}></View>
     </ScrollView>
   );
 }
 
 export default DetailPage;
-/*<View>
-            <TouchableOpacity
-              onPress={() => {
-                insertData(params, 1);
-              }}
-            >
-              <Text>Watched</Text>
-            </TouchableOpacity>
-          </View>
-          <View>
-            <TouchableOpacity
-              onPress={() => {
-                insertData(params, 0);
-              }}
-            >
-              <Text>Wishlist</Text>
-            </TouchableOpacity>
-          </View> */

@@ -6,7 +6,7 @@ import { Avatar, Badge, Icon, withBadge } from "react-native-elements";
 const AddedContent = () => {
   const navigation = useNavigation();
   return (
-    <View>
+    <View style={{ backgroundColor: "white" }}>
       <View
         style={{
           flex: 1,
