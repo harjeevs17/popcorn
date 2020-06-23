@@ -9,7 +9,7 @@ class TopBanner extends React.Component {
           style={{ height: 200, width: null, flex: 1, borderRadius: 10 }}
           source={{
             uri:
-              "https://c4.wallpaperflare.com/wallpaper/267/666/423/joker-2019-movie-joker-joaquin-phoenix-movies-dancing-hd-wallpaper-preview.jpg",
+              "https://i.pinimg.com/originals/fe/9a/fb/fe9afbe8b357c2f0068b50626fb1e840.jpg",
           }}
         />
       </View>

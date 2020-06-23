@@ -7,7 +7,7 @@ import { getRating } from "../../api/index";
 import { Rating, AirbnbRating } from "react-native-elements";
 import { ScrollView } from "react-native-gesture-handler";
 import RecommendedContent from "./recommededContent";
-
+import styles from "../../styles";
 function DetailPage({ route, navigation }) {
   const { params } = route.params;
   const [rating, setrating] = useState(0);
@@ -40,9 +40,19 @@ function DetailPage({ route, navigation }) {
     const result = await InsertData(data);
   };
   const onShare = async () => {
+    let mode = "";
+    if (params.type === "movies") {
+      mode = `https://www.themoviedb.org/movie/${params.id}`;
+    }
+    if (params.type === "Tvshows") {
+      mode = `https://www.themoviedb.org/tv/${params.id}`;
+    }
+    if (params.type === "books") {
+      mode = `https://books.google.co.in/books?id=${params.id}`;
+    }
     try {
       const result = await Share.share({
-        message: "Check it out-- https://www.themoviedb.org/movie/429617",
+        message: `Check out ${params.title}-- ${mode}`,
       });
       if (result.action === Share.sharedAction) {
         if (result.activityType) {
@@ -59,7 +69,7 @@ function DetailPage({ route, navigation }) {
   };
   return (
     <ScrollView>
-      <View>
+      <View style={{ backgroundColor: "white" }}>
         <Image
           style={{ height: 200, width: "100%" }}
           source={{
@@ -111,17 +121,34 @@ function DetailPage({ route, navigation }) {
         >
           <Icon
             raised
-            name="heartbeat"
-            type="normal"
-            color="#f50"
-            onPress={() => console.log("hello")}
+            name="plus"
+            type="font-awesome"
+            color="#2089dc"
+            onPress={() => {
+              insertData(params, 1);
+            }}
+          />
+          <Icon
+            raised
+            name="heart"
+            type="font-awesome"
+            color="#2089dc"
+            onPress={() => {
+              insertData(params, 0);
+            }}
+          />
+          <Icon
+            raised
+            name="share-alt"
+            type="font-awesome"
+            color="#2089dc"
+            onPress={onShare}
           />
         </View>
-        <Button onPress={onShare} title="Share" />
       </View>
       {params.type == "movies" || params.type == "Tvshows" ? (
         <View>
-          <Text>Recommendations</Text>
+          <Text style={styles.Heading}>Recommendations</Text>
           <RecommendedContent type={params.type} id={params.id} />
         </View>
       ) : null}
