@@ -137,10 +137,14 @@ export const getRating = async (type, id) => {
     console.log(err);
   }
 };
-export const fetchRelatedMovies = async (id) => {
-  console.log("id recss", id);
-  var url = `https://api.themoviedb.org/3/movie/${id}/similar?api_key=2204cced80820283f656cf9088708ab7&language=en-US&page=1`;
-  console.log("url", url);
+export const fetchRelatedMoviesAndTv = async (id, type) => {
+  var url = "";
+  if (type === "movies") {
+    url = `https://api.themoviedb.org/3/movie/${id}/similar?api_key=2204cced80820283f656cf9088708ab7&language=en-US&page=1`;
+  } else if (type === "Tvshows") {
+    url = `https://api.themoviedb.org/3/tv/${id}/similar?api_key=2204cced80820283f656cf9088708ab7&language=en-US&page=1`;
+  }
+
   try {
     const {
       data: { results },
@@ -157,11 +161,18 @@ export const fetchRelatedMovies = async (id) => {
             : null),
         (d.id = item.id),
         (d.date = item.release_date),
-        (d.type = "movies"),
+        (d.type = type),
         final.push(d);
     });
     return final;
   } catch (err) {
     console.log(err);
+  }
+};
+
+export const fetchRelatedData = (type, id) => {
+  if (type === "movies" || type === "Tvshows") {
+    const data = fetchRelatedMoviesAndTv(id, type);
+    return data;
   }
 };

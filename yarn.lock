@@ -4631,6 +4631,11 @@ react-native-screens@~2.2.0:
   dependencies:
     debounce "^1.2.0"
 
+react-native-share@^3.5.0:
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/react-native-share/-/react-native-share-3.5.0.tgz#ef65ed8e1240584b2aa4be81773b6e7559c110b2"
+  integrity sha512-vWP0GRqrxQpB96GuTFT2ae+5d33BH0E3AqHZ/xL5YQLGXyG5Fdwr39FNUCFW4oYc328tY9QRuUPeVo45gGAhTQ==
+
 react-native-status-bar-height@^2.2.0:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/react-native-status-bar-height/-/react-native-status-bar-height-2.5.0.tgz#bc0fb85230603850aab9667ee8111a62954de90c"

@@ -9,11 +9,11 @@ const Slider = (props) => {
 
   const test = props.data.map((item) => {
     var type1 = "";
-    if (props.title == "Movies") {
+    if (props.title == "Movies" || props.type == "movies") {
       type1 = "movies";
     } else if (props.title == "Books") {
       type1 = "books";
-    } else if (props.title == "Tv shows") {
+    } else if (props.title == "Tv shows" || props.type == "Tvshows") {
       type1 = "Tvshows";
     }
     return (
@@ -40,15 +40,6 @@ const Slider = (props) => {
   return (
     <ScrollView scrollEventThrottle={16}>
       <View style={{ flex: 1, backgroundColor: "white", paddingTop: 20 }}>
-        <Text
-          style={{
-            fontSize: 24,
-            fontWeight: "700",
-            paddingHorizontal: 20,
-          }}
-        >
-          Recent {props.title}
-        </Text>
         <View style={{ flex: 1, height: 200, marginTop: 20 }}>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             {test}
