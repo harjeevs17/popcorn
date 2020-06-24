@@ -39,8 +39,8 @@ const Slider = (props) => {
   });
   return (
     <ScrollView scrollEventThrottle={16}>
-      <View style={{ flex: 1, backgroundColor: "white", paddingTop: 20 }}>
-        <View style={{ flex: 1, height: 200, marginTop: 20 }}>
+      <View style={{ flex: 1, backgroundColor: "white", paddingTop: 10 }}>
+        <View style={{ flex: 1, height: 200, marginTop: 10 }}>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             {test}
           </ScrollView>

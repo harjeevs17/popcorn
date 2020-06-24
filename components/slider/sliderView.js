@@ -10,8 +10,8 @@ class Slider_view extends React.Component {
           style={{
             minWidth: 120,
             minHeight: "100%",
-            maxHeight: 170,
-            marginLeft: 20,
+            maxHeight: 200,
+            marginLeft: 15,
             borderWidth: 0.5,
             borderColor: "white",
           }}
@@ -22,16 +22,19 @@ class Slider_view extends React.Component {
                 uri: this.props.image,
               }}
               style={{
-                resizeMode: "cover",
                 height: 200,
-                width: null,
+                width: 120,
                 flex: 1,
                 borderRadius: 10,
               }}
             />
           </View>
           <View style={{ paddingLeft: 10, paddingTop: 10, paddingBottom: 10 }}>
-            <Text>{this.props.title}</Text>
+            <Text>
+              {this.props.title.length < 10
+                ? this.props.title
+                : `${this.props.title.substring(0, 10)}...`}
+            </Text>
           </View>
         </View>
       </>
