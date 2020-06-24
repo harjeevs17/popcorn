@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Text } from "native-base";
-import { Image, View, TouchableOpacity, Share } from "react-native";
+import {
+  Image,
+  View,
+  TouchableOpacity,
+  Share,
+  Vibration,
+  ToastAndroid,
+} from "react-native";
 import { Button, Icon } from "react-native-elements";
 import { InsertData } from "../../api/index";
 import { getRating } from "../../api/index";
@@ -33,11 +40,20 @@ function DetailPage({ route, navigation }) {
     console.log("Update rating ", r);
     console.log("New Update rating ", rating);
   };
+  const showToast = (msg) => {
+    ToastAndroid.show(msg, ToastAndroid.SHORT);
+  };
   const insertData = async (data, value) => {
     data.status = value;
     data.rating = rating;
     console.log("check77", data);
     const result = await InsertData(data);
+    Vibration.vibrate();
+    if (value == 1) {
+      showToast("Added to library");
+    } else if (value == 0) {
+      showToast("Added to wishlist");
+    }
   };
   const onShare = async () => {
     let mode = "";

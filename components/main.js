@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, ScrollView, StyleSheet } from "react-native";
+import { Text, ScrollView, StyleSheet, RefreshControl } from "react-native";
 import Header_View from "./header/header";
 import AddedContent from "./header/addedContent";
 import TopBanner from "./topBanner/topBanner";
@@ -18,6 +18,7 @@ class Main extends React.Component {
       tvData: [],
       bookData: [],
       topMovie: [],
+      refreshing: false,
     };
   }
   async getMovies() {
@@ -31,10 +32,28 @@ class Main extends React.Component {
   componentDidMount() {
     this.getMovies();
   }
+  onRefresh = async () => {
+    this.setState({
+      movieData: await ReturnData("movies", 1),
+      tvData: await ReturnData("Tvshows", 1),
+      bookData: await ReturnData("books", 1),
+      refreshing: true,
+    });
+    this.setState({
+      refreshing: false,
+    });
+  };
 
   render() {
     return (
-      <ScrollView>
+      <ScrollView
+        refreshControl={
+          <RefreshControl
+            refreshing={this.state.refreshing}
+            onRefresh={this.onRefresh}
+          />
+        }
+      >
         <AddedContent />
         {this.state.movieData.length != 0 ? (
           <View>

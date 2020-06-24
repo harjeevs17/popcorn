@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add react-native-share
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add react-native-dropdown-picker
 
 PATH: 
   C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\intel64\compiler;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;D:\app\harje\product\11.2.0\dbhome_3\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\ProgramData\chocolatey\bin;C:\Program Files\Java\jdk1.8.0_231\bin;C:\Users\harje\AppData\Local\Android\sdk\platform-tools;C:\Program Files\nodejs\;C:\Program Files\Calibre2\;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\PuTTY\;C:\Android;C:\Windows\System32;C:\Ruby24-x64\bin;C:\Users\harje\AppData\Local\Microsoft\WindowsApps;C:\Users\harje\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\harje\AppData\Roaming\npm;C:\Program Files\MongoDB\Server\4.2\bin;C:\Users\harje\AppData\Local\Yarn\bin;C:\Program Files\heroku\bin;C:\Program Files (x86)\mingw-w64\i686-8.1.0-posix-dwarf-rt_v6-rev0\mingw32\bin;
@@ -14,7 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: EPERM: operation not permitted, unlink 'D:\reactProjects\react-native\addition\node_modules\@babel\compat-data\node_modules\.bin'
+  Error: EPERM: operation not permitted, unlink 'D:\reactProjects\react-native\addition\node_modules\@babel\plugin-proposal-private-methods\lib'
 
 npm manifest: 
   {
@@ -4692,6 +4692,11 @@ Lockfile:
     integrity sha512-a0VzxOWot7F9B/GQyDSssBRd3jUJazFnTQS61IiyReWB6aHlFhf3Xz10jBRoURXy1EMCDCHgenmTVTkKHpKyqQ==
     dependencies:
       debounce "^1.2.0"
+  
+  react-native-share@^3.5.0:
+    version "3.5.0"
+    resolved "https://registry.yarnpkg.com/react-native-share/-/react-native-share-3.5.0.tgz#ef65ed8e1240584b2aa4be81773b6e7559c110b2"
+    integrity sha512-vWP0GRqrxQpB96GuTFT2ae+5d33BH0E3AqHZ/xL5YQLGXyG5Fdwr39FNUCFW4oYc328tY9QRuUPeVo45gGAhTQ==
   
   react-native-status-bar-height@^2.2.0:
     version "2.5.0"

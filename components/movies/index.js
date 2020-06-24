@@ -40,10 +40,11 @@ class Movies extends React.Component {
 
     this.getMovies(query);
   };
-  renderItem(item) {
+  renderItem(item, index) {
     //`https://image.tmdb.org/t/p/w500${item.poster_path}`
     return (
       <ListView
+        id={index}
         title={item.original_title}
         description={item.overview}
         f_image={
@@ -73,7 +74,8 @@ class Movies extends React.Component {
 
         <FlatList
           data={this.state.data}
-          renderItem={({ item }) => this.renderItem(item)}
+          keyExtractor={(item) => "U" + item.id}
+          renderItem={({ item, index }) => this.renderItem(item, index)}
         />
       </ScrollView>
     );
