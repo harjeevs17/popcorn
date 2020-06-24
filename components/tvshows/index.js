@@ -5,6 +5,7 @@ import TopBanner from "../topBanner/topBanner";
 import Header_View from "../header/header";
 import { FetchTvData } from "../../api/index";
 import ListView from "../ListView/index";
+import { image, no_tv_banner } from "../../assets/images";
 class Tvshows extends React.Component {
   constructor(props) {
     super(props);
@@ -33,11 +34,15 @@ class Tvshows extends React.Component {
       <ListView
         title={item.name}
         description={item.overview}
-        f_image={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
+        f_image={
+          item.poster_path !== null
+            ? `https://image.tmdb.org/t/p/w500${item.poster_path}`
+            : image
+        }
         b_image={
           item.backdrop_path !== null
             ? `https://image.tmdb.org/t/p/w500${item.backdrop_path}`
-            : null
+            : no_tv_banner
         }
         id={item.id}
         date={item.first_air_date}
@@ -53,7 +58,7 @@ class Tvshows extends React.Component {
           mode="tvshows"
           query={this.getQuery}
         />
-        <TopBanner />
+
         <FlatList
           data={this.state.data}
           renderItem={({ item }) => this.renderItem(item)}

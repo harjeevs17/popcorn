@@ -3,7 +3,7 @@ import { Text, TouchableOpacity, Image, View } from "react-native";
 import { Rating } from "react-native-elements";
 import { getRating } from "../../api/index";
 import { useNavigation } from "@react-navigation/native";
-
+import { image } from "../../assets/images";
 function ListView(props) {
   console.log("crack", props);
 
@@ -34,7 +34,7 @@ function ListView(props) {
     >
       <Image
         style={{ height: 170, width: 120, margin: 5, borderRadius: 10 }}
-        source={{ uri: props.f_image }}
+        source={{ uri: props.f_image != null ? props.f_image : image.noimage }}
       />
       <View style={{ flex: 1, justifyContent: "center", marginLeft: 5 }}>
         <Text style={{ marginBottom: 7, fontWeight: "700" }}>

@@ -18,7 +18,6 @@ class AddedContent extends React.Component {
     this.state = {
       type: "",
       content: [],
-      choice: 1,
     };
   }
   componentDidMount() {
@@ -65,8 +64,8 @@ class AddedContent extends React.Component {
   }
 
   onValueChange = async (value) => {
+    console.log("value changed", value);
     this.setState({
-      choice: value,
       content: await ReturnData(this.state.type, value),
     });
   };
@@ -81,6 +80,7 @@ class AddedContent extends React.Component {
             note={false}
             onValueChange={this.onValueChange}
           >
+            <Picker.Item label="Select an option" enabled={false} />
             <Picker.Item label="Watched" value="1" />
             <Picker.Item label="Wishlist" value="0" />
           </Picker>

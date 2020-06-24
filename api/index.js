@@ -1,4 +1,5 @@
 import axios from "axios";
+import noimage from "../assets/no-image.png";
 const development = "http://52.66.196.224/";
 export const FetchMovieData = async (query) => {
   try {
@@ -158,7 +159,7 @@ export const fetchRelatedMoviesAndTv = async (id, type) => {
         (d.b_image =
           item.backdrop_path !== null
             ? `https://image.tmdb.org/t/p/w500${item.backdrop_path}`
-            : null),
+            : noimage),
         (d.id = item.id),
         (d.date = item.release_date),
         (d.type = type),

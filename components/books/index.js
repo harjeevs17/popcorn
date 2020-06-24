@@ -5,6 +5,7 @@ import TopBanner from "../topBanner/topBanner";
 import Header_View from "../header/header";
 import { FetchBookData } from "../../api/index";
 import ListView from "../ListView/index";
+import { image, no_book_banner } from "../../assets/images";
 class Books extends React.Component {
   constructor(props) {
     super(props);
@@ -35,10 +36,12 @@ class Books extends React.Component {
         title={item.title}
         description={item.description}
         f_image={
-          item.imageLinks !== undefined ? `${item.imageLinks.thumbnail}` : null
+          item.imageLinks !== undefined ? `${item.imageLinks.thumbnail}` : image
         }
         b_image={
-          item.imageLinks !== undefined ? `${item.imageLinks.thumbnail}` : null
+          item.imageLinks !== undefined
+            ? `${item.imageLinks.thumbnail}`
+            : no_book_banner
         }
         id={item.id}
         date={item.first_air_date}
@@ -50,7 +53,7 @@ class Books extends React.Component {
     return (
       <ScrollView>
         <Header_View title="Search Books" mode="books" query={this.getQuery} />
-        <TopBanner />
+
         <FlatList
           data={this.state.data}
           renderItem={({ item }) => this.renderItem(item)}

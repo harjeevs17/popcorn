@@ -16,6 +16,7 @@ import { FetchMovieData } from "../../api/index";
 import { Rating } from "react-native-elements";
 import ListView from "../ListView/index";
 
+import { image, no_movie_banner } from "../../assets/images";
 class Movies extends React.Component {
   constructor(props) {
     super(props);
@@ -45,11 +46,15 @@ class Movies extends React.Component {
       <ListView
         title={item.original_title}
         description={item.overview}
-        f_image={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
+        f_image={
+          item.poster_path !== null
+            ? `https://image.tmdb.org/t/p/w500${item.poster_path}`
+            : image
+        }
         b_image={
           item.backdrop_path !== null
             ? `https://image.tmdb.org/t/p/w500${item.backdrop_path}`
-            : null
+            : no_movie_banner
         }
         id={item.id}
         date={item.release_date}
@@ -65,7 +70,7 @@ class Movies extends React.Component {
           mode="movies"
           query={this.getQuery}
         />
-        <TopBanner />
+
         <FlatList
           data={this.state.data}
           renderItem={({ item }) => this.renderItem(item)}

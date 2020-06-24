@@ -96,7 +96,9 @@ function DetailPage({ route, navigation }) {
             marginTop: 10,
           }}
         >
-          {params.description}
+          {params.description != ""
+            ? params.description
+            : "No description available"}
         </Text>
         <AirbnbRating
           count={5}
@@ -148,7 +150,6 @@ function DetailPage({ route, navigation }) {
       </View>
       {params.type == "movies" || params.type == "Tvshows" ? (
         <View>
-          <Text style={styles.Heading}>Recommendations</Text>
           <RecommendedContent type={params.type} id={params.id} />
         </View>
       ) : null}

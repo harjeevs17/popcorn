@@ -8,6 +8,7 @@ import RecommendedContent from "./DetailPage/recommededContent";
 import { ReturnData, GetTopMovie } from "../api/index";
 import { View } from "native-base";
 import styles from "../styles";
+import moviebanner from "../assets/movie-banner.jpg";
 
 class Main extends React.Component {
   constructor(props) {
@@ -34,8 +35,6 @@ class Main extends React.Component {
   render() {
     return (
       <ScrollView>
-        <TopBanner />
-
         <AddedContent />
         {this.state.movieData.length != 0 ? (
           <View>
