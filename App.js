@@ -89,7 +89,7 @@ export default class App extends React.Component {
       return <ActivityIndicator />;
     }
     return (
-      <NavigationContainer>
+      <NavigationContainer style={{ backgroundColor: "white" }}>
         <Stack.Navigator>
           <Stack.Screen name="Addition" component={tabs_view} />
           <Stack.Screen name="DetailPage" component={DetailPage} />

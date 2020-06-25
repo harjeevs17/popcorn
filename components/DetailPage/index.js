@@ -8,7 +8,7 @@ import {
   Vibration,
   ToastAndroid,
 } from "react-native";
-import { Button, Icon } from "react-native-elements";
+import { Button, Icon, Input } from "react-native-elements";
 import { InsertData } from "../../api/index";
 import { getRating } from "../../api/index";
 import { Rating, AirbnbRating } from "react-native-elements";
@@ -18,13 +18,18 @@ import styles from "../../styles";
 function DetailPage({ route, navigation }) {
   const { params } = route.params;
   const [rating, setrating] = useState(0);
+  const [review, setreview] = useState("");
+  const [tempReview, settempReview] = useState("");
 
+  const [showReview, setshowReview] = useState(1);
   useEffect(() => {
     console.log("inside", params);
     const foo = async () => {
       console.log("id we got", params.id);
       let F_Rating = await getRating(params.type, params.id);
-      setrating(F_Rating);
+      console.log("newB", F_Rating);
+      setrating(F_Rating.rating);
+      setreview(F_Rating.review);
     };
     foo();
     if (params.rating) {
@@ -46,6 +51,7 @@ function DetailPage({ route, navigation }) {
   const insertData = async (data, value) => {
     data.status = value;
     data.rating = rating;
+    data.review = review;
     console.log("check77", data);
     const result = await InsertData(data);
     Vibration.vibrate();
@@ -67,8 +73,9 @@ function DetailPage({ route, navigation }) {
       mode = `https://books.google.co.in/books?id=${params.id}`;
     }
     try {
+      let reviewMsg = review ? `\n\n My review is - ${review}` : null;
       const result = await Share.share({
-        message: `Check out ${params.title}-- ${mode}`,
+        message: `Check out ${params.title}-- ${mode} ${reviewMsg}`,
       });
       if (result.action === Share.sharedAction) {
         if (result.activityType) {
@@ -83,9 +90,13 @@ function DetailPage({ route, navigation }) {
       alert("Could not send");
     }
   };
+  const reviewSetter = () => {
+    setshowReview(0);
+    setreview(tempReview);
+  };
   return (
-    <ScrollView>
-      <View style={{ backgroundColor: "white" }}>
+    <ScrollView style={{ backgroundColor: "white" }}>
+      <View>
         <Image
           style={{ height: 200, width: "100%" }}
           source={{
@@ -116,6 +127,34 @@ function DetailPage({ route, navigation }) {
             ? params.description
             : "No description available"}
         </Text>
+        {showReview == 1 ? (
+          <View style={{ marginTop: 20 }}>
+            <Input
+              style={{ paddingTop: 20 }}
+              placeholder="Write a review"
+              style={styles}
+              onChangeText={(value) => settempReview(value)}
+              rightIcon={
+                <Icon
+                  name="arrow-right"
+                  type="font-awesome"
+                  color="#2089dc"
+                  size={24}
+                  onPress={() => reviewSetter()}
+                />
+              }
+            />
+          </View>
+        ) : null}
+
+        <View>
+          {review ? (
+            <View>
+              <Text style={styles.subHeading}>Review</Text>
+              <Text style={styles.text}>{review}</Text>
+            </View>
+          ) : null}
+        </View>
         <AirbnbRating
           count={5}
           reviews={[

@@ -117,6 +117,7 @@ export const InsertData = (data) => {
 
 export const getRating = async (type, id) => {
   let url = "";
+  var send = {};
   if (type == "movies") {
     url = `${development}fetch-movie-rating/${id}`;
   }
@@ -130,9 +131,17 @@ export const getRating = async (type, id) => {
     console.log("url", url);
     const { data } = await axios.get(url);
     if (data[0]) {
-      return data[0].rating;
+      send = {
+        rating: data[0].rating,
+        review: data[0].review,
+      };
+      return send;
     } else {
-      return 0;
+      send = {
+        rating: 0,
+        review: "",
+      };
+      return send;
     }
   } catch (err) {
     console.log(err);
@@ -153,8 +162,12 @@ export const fetchRelatedMoviesAndTv = async (id, type) => {
     var final = [];
     results.map((item) => {
       var d = {};
-      (d.title = item.original_title),
-        (d.description = item.overview),
+      if (type == "movies") {
+        d.title = item.original_title;
+      } else if (type == "Tvshows") {
+        d.title = item.original_name;
+      }
+      (d.description = item.overview),
         (d.f_image = `https://image.tmdb.org/t/p/w500${item.poster_path}`),
         (d.b_image =
           item.backdrop_path !== null
