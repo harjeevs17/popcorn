@@ -10,13 +10,14 @@ const styles = StyleSheet.create({
   subHeading: {
     fontSize: 20,
     fontWeight: "700",
-    paddingTop: 10,
+    paddingTop: 0,
     paddingHorizontal: 20,
     backgroundColor: "white",
   },
   text: {
     fontSize: 14,
     paddingTop: 15,
+    paddingBottom: 15,
     paddingHorizontal: 20,
     backgroundColor: "white",
   },

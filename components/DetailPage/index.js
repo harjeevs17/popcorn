@@ -94,6 +94,9 @@ function DetailPage({ route, navigation }) {
     setshowReview(0);
     setreview(tempReview);
   };
+  const setReviewBack = () => {
+    settempReview(review);
+  };
   return (
     <ScrollView style={{ backgroundColor: "white" }}>
       <View>
@@ -133,6 +136,7 @@ function DetailPage({ route, navigation }) {
               style={{ paddingTop: 20 }}
               placeholder="Write a review"
               style={styles}
+              value={tempReview}
               onChangeText={(value) => settempReview(value)}
               rightIcon={
                 <Icon
@@ -150,7 +154,24 @@ function DetailPage({ route, navigation }) {
         <View>
           {review ? (
             <View>
-              <Text style={styles.subHeading}>Review</Text>
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "flex-start",
+                }}
+              >
+                <Text style={styles.subHeading}>Review</Text>
+                <Icon
+                  name="edit"
+                  type="font-awesome"
+                  color="#2089dc"
+                  size={20}
+                  onPress={() => {
+                    setReviewBack();
+                  }}
+                />
+              </View>
               <Text style={styles.text}>{review}</Text>
             </View>
           ) : null}
