@@ -190,3 +190,21 @@ export const fetchRelatedData = (type, id) => {
     return data;
   }
 };
+
+export const DeleteItem = async (id, type) => {
+  var url = "";
+  if (type === "movies") {
+    url = `${development}delete-movie/${id}`;
+  } else if (type === "books") {
+    url = `${development}delete-book/${id}`;
+  } else if (type === "Tvshows") {
+    url = `${development}delete-tv-show/${id}`;
+  }
+  console.log("The deleteion url is" + url);
+  try {
+    const data = await axios.get(url);
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+};

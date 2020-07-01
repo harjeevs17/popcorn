@@ -1,16 +1,10 @@
 import React, { useState } from "react";
-import { Text, FlatList } from "react-native";
-import { ReturnData } from "../../api/index";
+import { Text, FlatList, Modal, TouchableOpacity, Alert } from "react-native";
+import { ReturnData, DeleteItem } from "../../api/index";
 import ListView from "../ListView/index";
-import {
-  Container,
-  Header,
-  Content,
-  Icon,
-  Picker,
-  Form,
-  View,
-} from "native-base";
+import { Icon, Overlay } from "react-native-elements";
+import { Container, Header, Content, Picker, Form, View } from "native-base";
+import styles from "../../styles";
 
 class AddedContent extends React.Component {
   constructor(props) {
@@ -18,6 +12,9 @@ class AddedContent extends React.Component {
     this.state = {
       type: "",
       content: [],
+      modalVisible: false,
+      deletedList: [],
+      deletion: false,
     };
   }
   componentDidMount() {
@@ -48,19 +45,52 @@ class AddedContent extends React.Component {
       type: type,
     });
   };
+  showModal(id, mode, itemTitle) {
+    const title = "Delete : " + itemTitle;
+    const message = "It will be removed from your list";
+    const buttons = [
+      { text: "Cancel", type: "cancel" },
+      {
+        text: "Delete",
+        onPress: () => this.deleteItem(id, mode),
+      },
+    ];
+
+    Alert.alert(title, "It will be deleted", buttons);
+  }
+  async deleteItem(id, type) {
+    this.setState({
+      deletion: await DeleteItem(id, type),
+    });
+    this.setState((prevState) => ({
+      deletedList: [...prevState.deletedList, id],
+    }));
+  }
+
   renderItem(item) {
-    return (
-      <ListView
-        title={item.title}
-        description={item.description}
-        f_image={item.f_image}
-        b_image={item.b_image}
-        id={item.id}
-        date={item.first_air_date}
-        rating={item.rating}
-        type={this.state.type}
-      />
-    );
+    return this.state.deletedList.includes(item.id) != true ? (
+      <View style={{ flex: 1, flexDirection: "row" }}>
+        <ListView
+          title={item.title}
+          description={item.description}
+          f_image={item.f_image}
+          b_image={item.b_image}
+          id={item.id}
+          date={item.first_air_date}
+          rating={item.rating}
+          type={this.state.type}
+        />
+        <View style={{ marginTop: 20 }}>
+          <Icon
+            name="trash"
+            type="font-awesome"
+            color="#2089dc"
+            size={26}
+            onPress={() => this.showModal(item.id, this.state.type, item.title)}
+          />
+        </View>
+      </View>
+    ) : null;
   }
 
   onValueChange = async (value) => {

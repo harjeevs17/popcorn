@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add react-native-dropdown-picker
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add react-native-modal-overlay
 
 PATH: 
   C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\intel64\compiler;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;D:\app\harje\product\11.2.0\dbhome_3\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\ProgramData\chocolatey\bin;C:\Program Files\Java\jdk1.8.0_231\bin;C:\Users\harje\AppData\Local\Android\sdk\platform-tools;C:\Program Files\nodejs\;C:\Program Files\Calibre2\;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\PuTTY\;C:\Android;C:\Windows\System32;C:\Ruby24-x64\bin;C:\Users\harje\AppData\Local\Microsoft\WindowsApps;C:\Users\harje\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\harje\AppData\Roaming\npm;C:\Program Files\MongoDB\Server\4.2\bin;C:\Users\harje\AppData\Local\Yarn\bin;C:\Program Files\heroku\bin;C:\Program Files (x86)\mingw-w64\i686-8.1.0-posix-dwarf-rt_v6-rev0\mingw32\bin;
@@ -14,7 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: EPERM: operation not permitted, unlink 'D:\reactProjects\react-native\addition\node_modules\@babel\plugin-proposal-private-methods\lib'
+  Error: EPERM: operation not permitted, copyfile 'C:\Users\harje\AppData\Local\Yarn\Cache\v6\npm-@types-lodash-4.14.152-7e7679250adce14e749304cdb570969f77ec997c-integrity\node_modules\@types\lodash\fp\pickBy.d.ts' -> 'D:\reactProjects\react-native\popcorn\popcorn_front_end\node_modules\@types\lodash\fp\pickBy.d.ts'
 
 npm manifest: 
   {
