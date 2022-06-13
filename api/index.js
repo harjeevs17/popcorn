@@ -1,6 +1,6 @@
 import axios from "axios";
 import noimage from "../assets/no-image.png";
-const development = "http://52.66.196.224/";
+const development = "https://popcorn-backend-endpoint.herokuapp.com/";
 export const FetchMovieData = async (query) => {
   try {
     const {
